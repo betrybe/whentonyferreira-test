@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import Login from './pages/Login';
+import Wallet from './pages/Wallet';
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <Switch>
+      <Route path="/" exact component={ Login } />
+      <Route path="/carteira" component={ Wallet } />
+    </Switch>
   </BrowserRouter>,
   document.getElementById('root'),
 );
