@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import styles from '../css/login.module.css';
 import Logo from '../img/logo.png';
 
@@ -14,19 +15,13 @@ const Login = () => {
     // Min caracter number of password
     const maxNumberPassword = 6;
 
+    // Validate Button Status
     if (resultEmail && password.length >= maxNumberPassword) {
       setStateButton(false);
     } else {
       setStateButton(true);
     }
   }, [email, password]);
-
-  const validateEmail = (value) => {
-    setEmail(value.target.value);
-  };
-  const validatePassword = (value) => {
-    setPassword(value.target.value);
-  };
 
   return (
     <div className={ styles.container }>
@@ -38,14 +33,14 @@ const Login = () => {
           data-testid="email-input"
           placeholder="E-mail"
           value={ email }
-          onChange={ validateEmail }
+          onChange={ (e) => setEmail(e.target.value) }
           className={ styles.input }
         />
         <input
           type="password"
           data-testid="password-input"
           value={ password }
-          onChange={ validatePassword }
+          onChange={ (e) => setPassword(e.target.value) }
           className={ styles.input }
         />
         <button
