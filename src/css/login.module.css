@@ -1,3 +1,42 @@
+
 .container {
-  background-color: white;
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  display: flex;
+  border-width: 0.1px;
+  border-style: solid;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+.button{
+  background-color: #198754;
+  padding: 0.375rem 0.7rem;
+  color: #FFF;
+  font-size: 1rem;
+  font-weight: 400;
+  border-radius: 8px;
+  border-width: 0.1px;
+}
+
+.input{
+  padding: 0.375rem 0.75rem  ;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  margin-bottom: 4px;
+  border-radius: 8px;
+  border-width: 0.1px;
+}
+
+.logo {
+  margin-bottom: 20px;
 }
