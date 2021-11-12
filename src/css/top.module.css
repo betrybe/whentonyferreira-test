@@ -1,0 +1,25 @@
+header{
+  width: 100%;
+  background-color: #fefcfe;
+}
+.logo{
+  width: 120px;
+}
+
+.containerTop {
+  padding: 10px;
+  display: flex;
+  width: 100%;
+}
+
+.box {
+  display: flex;
+  width: 40%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.boxLogo{
+  display: flex;
+  width: 60%;
+
+}
