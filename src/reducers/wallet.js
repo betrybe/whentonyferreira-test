@@ -20,19 +20,19 @@ export default function (state = INITIAL_STATE, action) {
       expenses: Number(action.expense + state.expenses),
     };
   case UPDATE_EXPENSE:
-    console.log(state.expenses - action.expense)
+    console.log(state.expenses - action.expense);
     return {
       ...state,
-      expenses: Number(state.expenses - action.expense)
+      expenses: Number(state.expenses - action.expense),
     };
   case SUBMIT_TABLE:
-    console.log(action)
+    console.log(action);
     return {
       ...state,
       table: [...state.table, action.table],
     };
   case UPDATE_TABLE:
-    console.log(action)
+    console.log(action);
     return {
       ...state,
       table: action.table,

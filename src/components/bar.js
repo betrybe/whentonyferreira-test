@@ -26,7 +26,7 @@ const Bar = () => {
       tag,
       descricao,
       m: m.ask,
-      vc: resultTotal
+      vc: resultTotal,
     }));
   };
 
@@ -48,7 +48,13 @@ const Bar = () => {
 
         <select name="moeda" onChange={ (e) => setMoeda(e.target.value) }>
           {
-            Object.values(cot).map((val) => <option key={ val.code } value={ val.code }>{val.code}</option>)
+            Object.values(cot).map((val) => (
+              <option
+                key={ val.code }
+                value={ val.code }
+              >
+                {val.code}
+              </option>))
           }
         </select>
         Método de
