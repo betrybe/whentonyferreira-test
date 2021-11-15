@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { submitExpense } from '../actions';
+import { submitExpense, submitTable } from '../actions';
 import styles from '../css/bar.module.css';
 import consultExpense from '../service/service';
 
@@ -16,6 +16,7 @@ const Bar = () => {
 
   const handleExpensesAdd = () => {
     dispatch(submitExpense(20));
+    dispatch(submitTable('teste'));
   };
 
   useEffect(() => {

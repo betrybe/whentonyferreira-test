@@ -1,6 +1,7 @@
 // Coloque aqui suas actions
 export const LOGIN = 'LOGIN';
 export const SUBMIT_EXPENSE = 'SUBMIT_EXPENSE';
+export const SUBMIT_TABLE = 'SUBMIT_TABLE';
 
 export function getEmailLogin(email) {
   return {
@@ -15,3 +16,8 @@ export function submitExpense(expense) {
     payload: expense,
   };
 }
+
+export const submitTable = (currencies) => ({
+  type: SUBMIT_TABLE,
+  payload: currencies,
+});
