@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { submitExpense } from '../actions';
 import styles from '../css/bar.module.css';
+import consultExpense from '../service/service';
 
 const Bar = () => {
   const [valor, setValor] = useState();
@@ -7,29 +10,32 @@ const Bar = () => {
   const [moeda, setMoeda] = useState();
   const [metodo, setMetodo] = useState();
   const [tag, setTag] = useState();
+  const dispatch = useDispatch();
+  const [expense, setExpense] = useState([]);
+  const [cot, setCot] = useState([]);
+
+  const handleExpensesAdd = () => {
+    dispatch(submitExpense(20));
+  };
+
+  useEffect(() => {
+    consultExpense().then((res) => setCot(res));
+  }, []);
 
   return (
+
     <div className={ styles.container }>
+
       Valor:
       {' '}
       <input />
       Moeda:
       {' '}
-      <select name="select">
-        <option value="valor1" selected>USD</option>
-        <option value="valor2">CAD</option>
-        <option value="valor3">EUR</option>
-        <option value="valor3">GBP</option>
-        <option value="valor3">ARS</option>
-        <option value="valor3">BTC</option>
-        <option value="valor3">LTC</option>
-        <option value="valor3">JPY</option>
-        <option value="valor3">CHF</option>
-        <option value="valor3">AUD</option>
-        <option value="valor3">CNY</option>
-        <option value="valor3">ILS</option>
-        <option value="valor3">ETH</option>
-        <option value="valor3">XRP</option>
+
+      <select name="moeda">
+        {
+          Object.values(cot).map((val) => <option key={ val.code } value={ val.code }>{val.code}</option>)
+        }
       </select>
       Método de
       {' '}
@@ -37,23 +43,23 @@ const Bar = () => {
       {' '}
       pagamento:
       {' '}
-      <select name="select">
-        <option value="valor1" selected>Dinheiro</option>
-        <option value="valor2">Cartão de Crédito</option>
-        <option value="valor3">Cartão de Débito</option>
+      <select name="mPagamento">
+        <option value="dinheiro">Dinheiro</option>
+        <option value="cart_credito">Cartão de Crédito</option>
+        <option value="cart_debito">Cartão de Débito</option>
       </select>
       Tag:
-      <select name="select">
-        <option value="valor1" selected>Lazer</option>
-        <option value="valor2">Alimentação</option>
-        <option value="valor3">Trabalho</option>
-        <option value="valor3">Transporte</option>
-        <option value="valor3">Saúde</option>
+      <select name="tag">
+        <option value="lazer">Lazer</option>
+        <option value="alimentacao">Alimentação</option>
+        <option value="trabalho">Trabalho</option>
+        <option value="transporte">Transporte</option>
+        <option value="saude">Saúde</option>
       </select>
       Descrição:
       {' '}
       <input />
-      <button type="button" className={ styles.button }>Adicionar despesa</button>
+      <button type="button" className={ styles.button } onClick={ () => handleExpensesAdd() }>Adicionar despesa</button>
     </div>
   );
 };

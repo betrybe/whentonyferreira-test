@@ -5,7 +5,8 @@ import styles from '../css/top.module.css';
 
 const Top = () => {
   const result = useSelector((state) => state.user);
-  console.log(result.email);
+  const expense = useSelector((state) => state.Wallet);
+  console.log(expense);
   return (
     <header>
       <div className={ styles.containerTop }>
@@ -16,8 +17,13 @@ const Top = () => {
           <div data-testid="email-field">
             {result.email}
           </div>
-          <div data-testid="total-field">
-            Despesa Total: R$ 0,00
+          <div>
+            Despesa Total: R$
+            {' '}
+            <span data-testid="total-field">
+              {expense.expenses.length === 0 ? '0,00' : expense.expenses.reduce((total, currentElement) => total + currentElement)}
+              {' '}
+            </span>
             {' '}
             <span data-testid="header-currency-field"> BRL </span>
           </div>
