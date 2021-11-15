@@ -5,23 +5,35 @@ import styles from '../css/bar.module.css';
 import consultExpense from '../service/service';
 
 const Bar = () => {
-  const [valor, setValor] = useState(0);
+  const [valor, setValor] = useState('');
   const [descricao, setDescricao] = useState('');
   const [moeda, setMoeda] = useState('USD');
-  const [metodo, setMetodo] = useState('dinheiro');
-  const [tag, setTag] = useState('lazer');
-  const dispatch = useDispatch();
-  const [expense, setExpense] = useState([]);
+  const [metodo, setMetodo] = useState('Dinheiro');
+  const [tag, setTag] = useState('Lazer');
   const [cot, setCot] = useState([]);
+
+  const dispatch = useDispatch();
 
   const handleExpensesAdd = (e) => {
     e.preventDefault();
-    dispatch(submitExpense(Number(valor)));
-    dispatch(submitTable([valor, moeda, metodo, tag, descricao]));
+    const m = cot[moeda];
+    const resultTotal = m.ask * valor;
+    dispatch(submitExpense(Number(resultTotal)));
+
+    dispatch(submitTable({ value: valor,
+      name: m.name.replace('/Real Brasileiro', ''),
+      metodo,
+      tag,
+      descricao,
+      m: m.ask,
+      vc: resultTotal
+    }));
   };
 
   useEffect(() => {
-    consultExpense().then((res) => setCot(res));
+    consultExpense().then((res) => {
+      setCot(res);
+    });
   }, []);
 
   return (
@@ -46,17 +58,17 @@ const Bar = () => {
         pagamento:
         {' '}
         <select name="mPagamento" onChange={ (e) => setMetodo(e.target.value) }>
-          <option value="dinheiro">Dinheiro</option>
-          <option value="cart_credito">Cartão de Crédito</option>
-          <option value="cart_debito">Cartão de Débito</option>
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Cartão de crédito">Cartão de Crédito</option>
+          <option value="Cartão de débito">Cartão de Débito</option>
         </select>
         Tag:
         <select name="tag" onChange={ (e) => setTag(e.target.value) }>
-          <option value="lazer">Lazer</option>
-          <option value="alimentacao">Alimentação</option>
-          <option value="trabalho">Trabalho</option>
-          <option value="transporte">Transporte</option>
-          <option value="saude">Saúde</option>
+          <option value="Lazer">Lazer</option>
+          <option value="Alimentação">Alimentação</option>
+          <option value="Trabalho">Trabalho</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Saúde">Saúde</option>
         </select>
         Descrição:
         {' '}

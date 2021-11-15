@@ -21,7 +21,7 @@ const Top = () => {
             Despesa Total: R$
             {' '}
             <span data-testid="total-field">
-              {expense.expenses.length === 0 ? '0,00' : expense.expenses.reduce((total, currentElement) => total + currentElement)}
+              {expense.expenses.length === 0 ? '0,00' : expense.expenses.toFixed(2)}
               {' '}
             </span>
             {' '}
